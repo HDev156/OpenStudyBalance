@@ -10,5 +10,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy project files
 COPY . /app
 
+# Expose port 7860 for Hugging Face Spaces
+EXPOSE 7860
+
 # Default command for container startup
-CMD ["python3", "test_run.py"]
+CMD ["python3", "api.py"]

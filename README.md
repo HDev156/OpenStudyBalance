@@ -141,6 +141,20 @@ The script will:
 
 OpenStudyBalance is useful for hackathon and reinforcement learning experiments because it provides a realistic, easy-to-understand planning task with human-centered metrics like stress and sleep. It is also a strong candidate for model-based action selection, prompt engineering, and policy testing in a student-focused domain.
 
----
+## Deployment to Hugging Face Spaces
 
-Happy hacking! OpenStudyBalance is meant to be simple, extensible, and student-friendly.
+1. Go to [Hugging Face Spaces](https://huggingface.co/spaces) and create a new Space
+2. Choose "Docker" as the SDK
+3. Set the Space name to `openstudybalance` (or your preferred name)
+4. Upload all project files to the Space repository
+5. The Space will automatically build and deploy using the provided Dockerfile
+6. Your Space URL will be: `https://[username]-openstudybalance.hf.space`
+
+The API will be available at:
+- Health check: `GET /health`
+- Reset environment: `POST /reset` with `{"task": "balanced_assignment_week"}`
+- Step environment: `POST /step` with `{"action": {...}}`
+
+## OpenEnv Submission
+
+Once deployed, submit your environment to OpenEnv using the `openenv.yaml` configuration file. The space URL in the YAML should match your deployed Hugging Face Space.
