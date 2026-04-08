@@ -30,11 +30,13 @@ class Reward(BaseModel):
     reason: str
 
 
+from pydantic import Field
+
 class EnvironmentState(BaseModel):
     current_day: int
     tasks: List[TaskItem]
     available_hours_per_day: float
     stress_level: float
     sleep_hours: float
-    daily_scheduled: Dict[int, float] = {}
+    daily_scheduled: Dict[int, float] = Field(default_factory=dict)
     burnout_risk: float = 0.0  # New: burnout risk score 0.0-1.0
