@@ -1,0 +1,37 @@
+name: OpenStudyBalance
+description: An OpenEnv environment that simulates burnout-aware academic planning for students, helping them balance assignments, deadlines, and well-being through reinforcement learning.
+version: 0.1.0
+tags:
+  - reinforcement-learning
+  - education
+  - planning
+  - student-life
+  - hackathon
+author: harshitasingh
+task_list:
+  - balanced_assignment_week
+  - deadline_collision_week
+  - burnout_prevention_mid_sems
+action_space_summary: |
+  Actions are structured using Pydantic models with three main types:
+
+  - schedule_task: Schedule study hours for a specific task on a given day (1-7)
+    Parameters: task_name (str), day (int), hours (float > 0)
+
+  - add_break: Add a break on a specific day to reduce stress levels
+    Parameters: day (int 1-7)
+
+  - finalize_plan: End the planning session and receive final evaluation score
+    Parameters: none
+
+  Invalid actions receive negative rewards.
+observation_space_summary: |
+  Observations are Pydantic models containing:
+
+  - pending_tasks: List of TaskItem objects (name, hours_needed, deadline_days, priority, scheduled_hours)
+  - available_hours_per_day: Float (daily study capacity)
+  - stress_level: Float 0.0-1.0 (current stress)
+  - sleep_hours: Float (current sleep hours)
+  - message: String (status message with day and pending count)
+
+  Environment tracks daily scheduled hours to prevent overload.
